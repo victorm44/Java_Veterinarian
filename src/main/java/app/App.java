@@ -4,6 +4,7 @@ import java.util.Scanner;
 import app.dto.PersonDTO;
 import app.dto.PetDTO;
 import app.dto.MedicalRecordDTO;
+import app.validators.PersonValidator;
 import app.service.PersonService;
 import app.service.PetService;
 import app.service.MedicalRecordService;
@@ -102,7 +103,7 @@ public class App {
 		String name = scanner.nextLine();
 		System.out.print("Enter age: ");
 		int age = scanner.nextInt();
-		scanner.nextLine();
+		scanner.nextLine(); // Consumir el salto de línea después de leer la edad
 		String role;
 		do {
 			System.out.print("Enter role (administrator, veterinarian, owner, seller): ");
@@ -119,7 +120,10 @@ public class App {
 
 		PersonDTO personDTO = new PersonDTO(idNumber, name, age, role);
 
-		PersonService.registerPerson(personDTO, idNumber, name, age, role, username, password);
+		if (PersonValidator.validatePerson(personDTO)) {
+			PersonService.registerPerson(personDTO, idNumber, name, age, role, username, password);		} else {
+			System.out.println("Error validating person data.");
+		}
 	}
 
 

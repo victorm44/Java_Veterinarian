@@ -1,11 +1,21 @@
 package app.models;
 
 public class MedicalRecord {
-    public String getPetId() {
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPetId() {
         return petId;
     }
 
-    public void setPetId(String petId) {
+    public void setPetId(int petId) {
         this.petId = petId;
     }
 
@@ -105,7 +115,7 @@ public class MedicalRecord {
         this.orderCancellation = orderCancellation;
     }
 
-    private String petId;
+    private int petId;
     private String date;
     private String veterinarianId;
     private String reasonForVisit;

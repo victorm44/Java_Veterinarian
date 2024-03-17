@@ -1,6 +1,15 @@
 package app.models;
-
+import app.models.User;
 public class Person {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    private User user;
     public String getIdNumber() {
         return idNumber;
     }

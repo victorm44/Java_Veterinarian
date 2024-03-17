@@ -20,7 +20,7 @@ public class MedicalRecordDAO {
     public static void addMedicalRecord(MedicalRecord medicalRecord) {
         try (Connection connection = MYSQLConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
-            statement.setString(1, medicalRecord.getPetId());
+            statement.setInt(1, medicalRecord.getPetId());
             statement.setString(2, medicalRecord.getDate());
             statement.setString(3, medicalRecord.getVeterinarianId());
             statement.setString(4, medicalRecord.getReasonForVisit());
@@ -47,13 +47,13 @@ public class MedicalRecordDAO {
             while (resultSet.next()) {
                 MedicalRecord medicalRecord = new MedicalRecord();
 
-                medicalRecord.setPetId(resultSet.getString("pet_id"));
+                medicalRecord.setPetId(resultSet.getInt("pet_id"));
                 medicalRecord.setDate(resultSet.getString("date"));
                 medicalRecord.setVeterinarianId(resultSet.getString("veterinarian_id"));
                 medicalRecord.setReasonForVisit(resultSet.getString("reason_for_visit"));
                 medicalRecord.setSymptoms(resultSet.getString("symptoms"));
                 medicalRecord.setDiagnosis(resultSet.getString("diagnosis"));
-                medicalRecord.setProcedure(resultSet.getString("procedure"));
+                medicalRecord.setProcedure(resultSet.getString("procedures"));
                 medicalRecord.setMedication(resultSet.getString("medication"));
                 medicalRecord.setMedicationDose(resultSet.getString("medication_dose"));
                 medicalRecord.setVaccinationHistory(resultSet.getString("vaccination_history"));
@@ -77,13 +77,13 @@ public class MedicalRecordDAO {
             if (resultSet.next()) {
                 medicalRecord = new MedicalRecord();
 
-                medicalRecord.setPetId(resultSet.getString("pet_id"));
+                medicalRecord.setPetId(resultSet.getInt("pet_id"));
                 medicalRecord.setDate(resultSet.getString("date"));
                 medicalRecord.setVeterinarianId(resultSet.getString("veterinarian_id"));
                 medicalRecord.setReasonForVisit(resultSet.getString("reason_for_visit"));
                 medicalRecord.setSymptoms(resultSet.getString("symptoms"));
                 medicalRecord.setDiagnosis(resultSet.getString("diagnosis"));
-                medicalRecord.setProcedure(resultSet.getString("procedure"));
+                medicalRecord.setProcedure(resultSet.getString("procedures"));
                 medicalRecord.setMedication(resultSet.getString("medication"));
                 medicalRecord.setMedicationDose(resultSet.getString("medication_dose"));
                 medicalRecord.setVaccinationHistory(resultSet.getString("vaccination_history"));
@@ -100,7 +100,7 @@ public class MedicalRecordDAO {
     public static void updateMedicalRecord(MedicalRecord medicalRecord) {
         try (Connection connection = MYSQLConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            statement.setString(1, medicalRecord.getPetId());
+            statement.setInt(1, medicalRecord.getPetId());
             statement.setString(2, medicalRecord.getDate());
             statement.setString(3, medicalRecord.getVeterinarianId());
             statement.setString(4, medicalRecord.getReasonForVisit());

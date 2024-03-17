@@ -20,7 +20,7 @@ public class PetDAO {
         try (Connection connection = MYSQLConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
             statement.setString(1, pet.getName());
-            statement.setString(2, pet.getOwnerID());
+            statement.setString(2, pet.getOwnerId());
             statement.setInt(3, pet.getAge());
             statement.setString(4, pet.getSpecies());
             statement.setString(5, pet.getBreed());
@@ -39,9 +39,9 @@ public class PetDAO {
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 Pet pet = new Pet();
-                pet.setId(resultSet.getString("id"));
+                pet.setId(resultSet.getInt("id"));
                 pet.setName(resultSet.getString("name"));
-                pet.setOwnerID(resultSet.getString("owner_id"));
+                pet.setOwnerId(resultSet.getString("owner_id"));
                 pet.setAge(resultSet.getInt("age"));
                 pet.setSpecies(resultSet.getString("species"));
                 pet.setBreed(resultSet.getString("breed"));
@@ -63,9 +63,9 @@ public class PetDAO {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 pet = new Pet();
-                pet.setId(resultSet.getString("id"));
+                pet.setId(resultSet.getInt("id"));
                 pet.setName(resultSet.getString("name"));
-                pet.setOwnerID(resultSet.getString("owner_id"));
+                pet.setOwnerId(resultSet.getString("owner_id"));
                 pet.setAge(resultSet.getInt("age"));
                 pet.setSpecies(resultSet.getString("species"));
                 pet.setBreed(resultSet.getString("breed"));
@@ -82,13 +82,13 @@ public class PetDAO {
         try (Connection connection = MYSQLConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, pet.getName());
-            statement.setString(2, pet.getOwnerID());
+            statement.setString(2, pet.getOwnerId());
             statement.setInt(3, pet.getAge());
             statement.setString(4, pet.getSpecies());
             statement.setString(5, pet.getBreed());
             statement.setString(6, pet.getCharacteristics());
             statement.setDouble(7, pet.getWeight());
-            statement.setString(8, pet.getId());
+            statement.setInt(8, pet.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

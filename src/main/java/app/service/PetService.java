@@ -13,10 +13,10 @@ public class PetService {
         if (PetValidator.validatePet(petDTO)) {
 
             Pet pet = new Pet();
-            pet.setId(Integer.toString(petIdCounter));
+            pet.setId(petIdCounter);
             petIdCounter++;
             pet.setName(petDTO.getName());
-            pet.setOwnerID(petDTO.getOwnerID());
+            pet.setOwnerId(petDTO.getOwnerID());
             pet.setAge(petDTO.getAge());
             pet.setSpecies(petDTO.getSpecies());
             pet.setBreed(petDTO.getBreed());
