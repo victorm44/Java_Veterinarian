@@ -8,5 +8,8 @@ public class MedicalRecordDAO {
 
     public static void addMedicalRecord(MedicalRecord medicalRecord) {
         medicalRecords[numberOfRecords++] = medicalRecord;
+
+
+
     }
 }
